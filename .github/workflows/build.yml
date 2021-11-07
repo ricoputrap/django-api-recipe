@@ -1,0 +1,14 @@
+name: Main App
+
+on: push
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
+      - name: Run Unit Testing
+        run: docker-compose run app sh -c "python manage.py test"
